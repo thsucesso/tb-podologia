@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TB Podologia - Cuidamos dos seus pés</title>
+    <meta name="description" content="Clínica de Podologia em Curitiba. Tratamentos especializados para unha encravada, calos, micoses e mais.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6', // Teal 500 (Verde menta/saúde)
+                            600: '#0d9488', // Teal 600
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Accordion transition styles */
+        .accordion-content {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .accordion-content.open {
+            max-height: 500px; /* Adjust if content is very long */
+            opacity: 1;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .accordion-icon.open {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-gray-50 antialiased flex flex-col min-h-screen">
+
+    <!-- Header & Navegação -->
+    <header class="fixed w-full bg-white/95 backdrop-blur-md shadow-sm z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logotipo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer transition-transform hover:scale-105" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-leaf text-brand-600 text-3xl"></i>
+                    <span class="font-bold text-2xl tracking-tight text-gray-900">TB <span class="text-brand-600">PODOLOGIA</span></span>
+                </div>
+                
+                <!-- Menu Desktop -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Início</a>
+                    <a href="#sobre" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Sobre</a>
+                    <a href="#servicos" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Serviços</a>
+                    <a href="#contato" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Contato</a>
+                </nav>
+
+                <!-- Botão Agendar Desktop -->
+                <div class="hidden md:flex">
+                    <a href="https://wa.me/5541999999999" target="_blank" class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-md hover:shadow-lg flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Agendar
+                    </a>
+                </div>
+
+                <!-- Botão Menu Mobile (Hambúrguer) -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-brand-600 focus:outline-none p-2 rounded-md">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Painel Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full left-0">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#inicio" class="mobile-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-brand-50">Início</a>
+                <a href="#sobre" class="mobile-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-brand-50">Sobre</a>
+                <a href="#servicos" class="mobile-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-brand-50">Serviços</a>
+                <a href="#contato" class="mobile-link block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-brand-50">Contato</a>
+                <a href="https://wa.me/5541999999999" target="_blank" class="mt-4 flex items-center justify-center gap-2 w-full bg-brand-600 hover:bg-brand-700 transition-colors text-white px-4 py-3 rounded-lg font-medium shadow-md">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Agendar Consulta
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-20">
+        <!-- 2. Seção Hero (Início) -->
+        <section id="inicio" class="relative bg-brand-50 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 lg:pt-32 lg:pb-36 flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 text-center lg:text-left z-10">
+                    <span class="inline-block py-1.5 px-4 rounded-full bg-white text-brand-700 font-semibold text-sm mb-6 border border-brand-200 shadow-sm">Clínica Especializada</span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                        Cuidamos com <span class="text-brand-600">profissionalismo</span> dos seus pés.
+                    </h1>
+                    <h2 class="text-xl md:text-2xl text-gray-700 font-medium mb-4">
+                        Como estão os seus pés? Macios, lindos e saudáveis?
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Agende a sua visita para receber os cuidados profissionais da melhor equipe de Podologia de Curitiba, com tratamentos especiais para cuidar de infecções, olho de peixe, unha encravada e soluções personalizadas.
+                    </p>
+                    <a href="https://wa.me/5541999999999" target="_blank" class="inline-flex items-center justify-center gap-3 bg-brand-600 hover:bg-brand-700 text-white text-lg font-semibold px-8 py-4 rounded-full transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i> Agendar Consulta via WhatsApp
+                    </a>
+                </div>
+                <div class="lg:w-1/2 relative z-10 w-full">
+                    <!-- Elemento decorativo -->
+                    <div class="absolute inset-0 bg-brand-300 rounded-full blur-3xl opacity-30 transform translate-x-10 translate-y-10"></div>
+                    <!-- Imagem placeholder com tema relaxante -->
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1453&auto=format&fit=crop" alt="Cuidados relaxantes com os pés" class="relative rounded-2xl shadow-2xl object-cover h-[400px] md:h-[500px] w-full border-4 border-white">
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Seção Quem sou Eu & 4. Card de Destaques -->
+        <section id="sobre" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Quem sou eu -->
+                <div class="flex flex-col lg:flex-row gap-16 items-center mb-24">
+                    <div class="lg:w-5/12 w-full">
+                        <div class="relative">
+                            <div class="absolute -inset-4 bg-brand-100 rounded-2xl transform -rotate-3 z-0"></div>
+                            <!-- Imagem de perfil profissional -->
+                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1470&auto=format&fit=crop" alt="Podóloga Thais Bueno" class="relative rounded-2xl shadow-xl z-10 object-cover w-full h-[450px]">
+                        </div>
+                    </div>
+                    <div class="lg:w-7/12 text-center lg:text-left">
+                        <h2 class="text-sm font-bold tracking-widest text-brand-600 uppercase mb-3">Conheça a Especialista</h2>
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Quem sou Eu?</h3>
+                        <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                            A Podóloga <strong>Thais Bueno</strong> é especialista em podologia <i class="fa-solid fa-shoe-prints text-brand-500 mx-1"></i> com mais de 10 anos de experiência no mercado.
+                        </p>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            Atuando em toda área da podologia visando a eficiência e um atendimento humanizado, nosso maior foco é proporcionar alívio imediato da dor, utilizando de técnicas eficazes e inovadoras, trazendo conforto e bem estar para seus pés.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Card de Destaques (Pilares) -->
+                <div class="mb-16">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                        <!-- Card 1 -->
+                        <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                            <div class="w-16 h-16 bg-white shadow-sm rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-600 transition-colors duration-300">
+                                <i class="fa-solid fa-compress text-2xl text-brand-600 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-900">Unha Encravada</h4>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                            <div class="w-16 h-16 bg-white shadow-sm rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-600 transition-colors duration-300">
+                                <i class="fa-solid fa-bugs text-2xl text-brand-600 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-900">Micoses e Frieiras</h4>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                            <div class="w-16 h-16 bg-white shadow-sm rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-600 transition-colors duration-300">
+                                <i class="fa-solid fa-person-cane text-2xl text-brand-600 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-900">Podogeriatria</h4>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                            <div class="w-16 h-16 bg-white shadow-sm rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-600 transition-colors duration-300">
+                                <i class="fa-solid fa-shield-heart text-2xl text-brand-600 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-900">Podologia Preventiva</h4>
+                        </div>
+                        <!-- Card 5 -->
+                        <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                            <div class="w-16 h-16 bg-white shadow-sm rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-600 transition-colors duration-300">
+                                <i class="fa-solid fa-shoe-prints text-2xl text-brand-600 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                            <h4 class="font-bold text-gray-900">Calos e Rachaduras</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Frase de impacto -->
+                <div class="bg-brand-600 rounded-3xl p-10 md:p-14 text-center shadow-xl relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-white opacity-10 rounded-full blur-2xl"></div>
+                    
+                    <i class="fa-solid fa-quote-left text-4xl text-brand-400 opacity-50 mb-4 block"></i>
+                    <p class="text-xl md:text-2xl text-white font-medium italic relative z-10 max-w-4xl mx-auto leading-relaxed">
+                        "Nosso objetivo é tratar toda e qualquer lesão, orientando o paciente quanto aos cuidados e prevenção de possíveis transtornos que podem ocorrer nos pés."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Seção de Serviços Detalhados -->
+        <section id="servicos" class="py-24 bg-gray-50 border-t border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-sm font-bold tracking-widest text-brand-600 uppercase mb-3">Especialidades Clínicas</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Serviços que Realizamos</h3>
+                    <div class="w-24 h-1.5 bg-brand-500 mx-auto mt-6 rounded-full"></div>
+                </div>
+
+                <!-- Grid de Serviços -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+                    <!-- Serviço 1 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                        <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-scissors text-2xl text-brand-600 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-600 transition-colors">Cortes Técnicos</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Corte correto e anatômico das unhas, prevenindo encravamentos e infecções futuras.</p>
+                    </div>
+                    <!-- Serviço 2 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                        <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-hand-dots text-2xl text-brand-600 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-600 transition-colors">Calos e Calosidades</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Remoção cuidadosa e tratamento especializado para alívio imediato de dores e desconfortos.</p>
+                    </div>
+                    <!-- Serviço 3 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                        <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-compress-arrows-alt text-2xl text-brand-600 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-600 transition-colors">Unha Encravada</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Tratamento indolor e eficaz para onicocriptose, promovendo a cicatrização adequada.</p>
+                    </div>
+                    <!-- Serviço 4 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                        <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-water text-2xl text-brand-600 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-600 transition-colors">Fissuras</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Cuidados intensivos para calcanhares rachados, devolvendo a integridade e maciez da pele.</p>
+                    </div>
+                    <!-- Serviço 5 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                        <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-microscope text-2xl text-brand-600 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-600 transition-colors">Auxílio no Combate à Micose</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Acompanhamento, limpeza e protocolos específicos para combater fungos nas unhas e pele.</p>
+                    </div>
+                    <!-- Serviço 6 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                        <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-spa text-2xl text-brand-600 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-600 transition-colors">Hidratação e Prevenção</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Hidratação profunda e medidas preventivas para manter a saúde e beleza constante dos pés.</p>
+                    </div>
+                    <!-- Serviço 7 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                        <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-child text-2xl text-brand-600 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-600 transition-colors">Podologia Infantil</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Abordagem lúdica e extremamente cuidadosa para tratamento de problemas nos pés dos pequenos.</p>
+                    </div>
+                    <!-- Serviço 8 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                        <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:scale-110 transition-all duration-300">
+                            <i class="fa-solid fa-heart-pulse text-2xl text-brand-600 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-600 transition-colors">Pés Diabéticos</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Atenção redobrada, prevenção e tratamento rigoroso para evitar complicações graves.</p>
+                    </div>
+                </div>
+
+                <!-- Texto de Conscientização -->
+                <div class="bg-white rounded-3xl p-8 md:p-10 border border-brand-100 shadow-lg flex flex-col md:flex-row gap-8 items-center relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-50 rounded-bl-full -z-0"></div>
+                    <div class="bg-brand-100 p-5 rounded-full flex-shrink-0 relative z-10">
+                        <i class="fa-solid fa-user-doctor text-4xl text-brand-600"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Importância da Podologia</h4>
+                        <p class="text-gray-600 leading-relaxed">
+                            Além dos seus pés serem o membro mais importante do seu corpo, sem eles você não se locomove facilmente. A podologia é responsável pela prevenção de uma série de doenças, como o caso dos pés de diabéticos, onde feridas e machucados não tratados podem levar a sérias complicações. <strong>Vai muito além da estética, é questão de saúde!</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Seção FAQ -->
+        <section id="faq" class="py-24 bg-white border-t border-gray-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-sm font-bold tracking-widest text-brand-600 uppercase mb-3">Tire suas Dúvidas</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Perguntas Frequentes</h3>
+                    <p class="text-gray-600 text-lg">Entenda melhor sobre nossos serviços e a importância do cuidado profissional.</p>
+                </div>
+
+                <div class="space-y-5">
+                    <!-- FAQ Item 1 -->
+                    <div class="border border-gray-200 rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
+                        <button class="accordion-header w-full text-left px-6 md:px-8 py-6 flex justify-between items-center focus:outline-none transition-colors" onclick="toggleAccordion('faq1')">
+                            <span class="font-bold text-gray-900 text-lg pr-4">Qual a diferença entre um podólogo e um pedicure?</span>
+                            <div class="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
+                                <i id="icon-faq1" class="fa-solid fa-chevron-down text-brand-600 accordion-icon"></i>
+                            </div>
+                        </button>
+                        <div id="content-faq1" class="accordion-content bg-gray-50 px-6 md:px-8">
+                            <p class="py-6 text-gray-600 leading-relaxed border-t border-gray-200">
+                                O pedicure é responsável apenas por manter a boa aparência de suas unhas por meio de limpeza superficial, lixamento das unhas e esmaltação; o corte correto da unha, tratamento de patologias e lixamento terapêutico dos pés é responsabilidade do seu podólogo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="border border-gray-200 rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
+                        <button class="accordion-header w-full text-left px-6 md:px-8 py-6 flex justify-between items-center focus:outline-none transition-colors" onclick="toggleAccordion('faq2')">
+                            <span class="font-bold text-gray-900 text-lg pr-4">É necessário encaminhamento médico para consultar um podólogo?</span>
+                            <div class="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
+                                <i id="icon-faq2" class="fa-solid fa-chevron-down text-brand-600 accordion-icon"></i>
+                            </div>
+                        </button>
+                        <div id="content-faq2" class="accordion-content bg-gray-50 px-6 md:px-8">
+                            <p class="py-6 text-gray-600 leading-relaxed border-t border-gray-200">
+                                Não. A podologia serve tanto para tratar como para prevenir problemas nas unhas e pés, e qualquer pessoa pode usufruir desse serviço diretamente. Trabalhamos de forma independente para garantir a saúde dos seus pés desde o primeiro contato.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Seção de Contato e Localização -->
+        <section id="contato" class="py-24 bg-gray-900 text-white relative overflow-hidden">
+            <!-- Efeitos de Background -->
+            <div class="absolute top-0 right-0 -mr-32 -mt-32 w-96 h-96 rounded-full bg-brand-800 blur-[100px] opacity-40"></div>
+            <div class="absolute bottom-0 left-0 -ml-32 -mb-32 w-80 h-80 rounded-full bg-brand-700 blur-[100px] opacity-30"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex flex-col lg:flex-row gap-16 items-center">
+                    <!-- Textos e Botões -->
+                    <div class="lg:w-1/2">
+                        <h2 class="text-sm font-bold tracking-widest text-brand-400 uppercase mb-3">Estamos esperando você</h2>
+                        <h3 class="text-3xl md:text-5xl font-bold mb-10 text-white">Contato e Localização</h3>
+                        
+                        <div class="space-y-8 mb-12 bg-gray-800/50 p-8 rounded-3xl border border-gray-700 backdrop-blur-sm">
+                            <div class="flex items-start gap-5">
+                                <div class="w-14 h-14 rounded-2xl bg-brand-900 border border-brand-700 flex items-center justify-center flex-shrink-0 shadow-inner">
+                                    <i class="fa-solid fa-location-dot text-2xl text-brand-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl mb-2 text-white">Nosso Endereço</h4>
+                                    <p class="text-gray-300 leading-relaxed text-lg">
+                                        R. Alécio Masson, 131 - Alto Boqueirão<br>
+                                        Curitiba - PR, 81770-060
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <hr class="border-gray-700">
+
+                            <div class="flex items-start gap-5">
+                                <div class="w-14 h-14 rounded-2xl bg-brand-900 border border-brand-700 flex items-center justify-center flex-shrink-0 shadow-inner">
+                                    <i class="fa-solid fa-clock text-2xl text-brand-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl mb-2 text-white">Horários de Atendimento</h4>
+                                    <p class="text-gray-300 text-lg">Segunda a Sexta: 08h às 18h<br>Sábados: 08h às 12h</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <!-- Botão WhatsApp -->
+                            <a href="https://wa.me/5541999999999" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.5)] text-center flex items-center justify-center gap-3 hover:-translate-y-1">
+                                <i class="fa-brands fa-whatsapp text-2xl"></i> CONTATO PELO WHATSAPP 📱
+                            </a>
+                            <!-- Botão Maps -->
+                            <a href="https://maps.google.com/?q=R.+Alécio+Masson,+131+-+Alto+Boqueirão,+Curitiba+-+PR,+81770-060" target="_blank" class="flex-1 bg-gray-800 hover:bg-gray-700 border border-gray-600 text-white px-6 py-4 rounded-xl font-bold transition-all text-center flex items-center justify-center gap-3 hover:-translate-y-1">
+                                <i class="fa-solid fa-map-location-dot text-xl text-brand-400"></i> VER LOCAL DE ATENDIMENTO 👣
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Mapa Iframe -->
+                    <div class="lg:w-1/2 w-full">
+                        <div class="bg-white/5 p-3 rounded-3xl shadow-2xl border border-white/10 backdrop-blur-sm h-[450px] lg:h-[550px]">
+                            <!-- Google Maps Iframe Placeholder -->
+                            <!-- (Usando as coordenadas aproximadas de Curitiba baseadas no endereço) -->
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3600.9999!2d-49.23!3d-25.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDMwJzAwLjAiUyA0OcKwMTMnNDguMCJX!5e0!3m2!1spt-BR!2sbr!4v1600000000000!5m2!1spt-BR!2sbr" 
+                                class="w-full h-full rounded-2xl border-0 filter grayscale-[20%] contrast-125" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 8. Rodapé (Footer) -->
+    <footer class="bg-gray-950 text-gray-400 py-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <!-- Logo Footer -->
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-leaf text-brand-600 text-2xl"></i>
+                    <span class="font-bold text-white text-xl tracking-tight">TB PODOLOGIA</span>
+                </div>
+                
+                <!-- Copyright -->
+                <p class="text-sm text-center md:text-left">
+                    &copy; 2024 TB Podologia. Todos os direitos reservados.
+                </p>
+                
+                <!-- Social Links -->
+                <div class="flex gap-5">
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-600 transition-all">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-600 transition-all">
+                        <i class="fa-brands fa-facebook-f text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/5541999999999" target="_blank" class="fixed bottom-6 right-6 z-[60] bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] hover:shadow-[0_6px_20px_rgba(34,197,94,0.23)] hover:-translate-y-1 transition-all group" aria-label="Fale conosco no WhatsApp">
+        <i class="fa-brands fa-whatsapp text-4xl group-hover:scale-110 transition-transform"></i>
+        <!-- Efeito de Pulso (Ping) -->
+        <span class="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping -z-10"></span>
+    </a>
+
+    <!-- Lógica de JavaScript -->
+    <script>
+        // 1. Controle do Menu Mobile
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        // Alternar menu ao clicar no hambúrguer
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Fechar menu ao clicar em um link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // 2. Navbar Fixa: Efeito de sombra ao rolar a página
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+                header.classList.replace('bg-white/95', 'bg-white/100');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.replace('bg-white/100', 'bg-white/95');
+            }
+        });
+
+        // 3. Lógica do Accordion (Sanfona) para a seção FAQ
+        function toggleAccordion(id) {
+            const content = document.getElementById('content-' + id);
+            const icon = document.getElementById('icon-' + id);
+            
+            // Verifica se já está aberto
+            const isOpen = content.classList.contains('open');
+
+            // Opcional: Fechar todos os outros accordions ao abrir um novo
+            const allContents = document.querySelectorAll('.accordion-content');
+            const allIcons = document.querySelectorAll('.accordion-icon');
+            
+            allContents.forEach(item => item.classList.remove('open'));
+            allIcons.forEach(item => item.classList.remove('open'));
+
+            // Se não estava aberto, abre o clicado
+            if (!isOpen) {
+                content.classList.add('open');
+                icon.classList.add('open');
+            }
+        }
+    </script>
+</body>
+</html>
